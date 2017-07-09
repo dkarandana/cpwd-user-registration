@@ -18,7 +18,7 @@ $countries = curl_exec($ch); // Getting jSON result string
 $countryList = json_decode($countries);
 
 // close cURL resource, and free up system resources
-curl_close($ch);
+//curl_close($ch);
 ?>
 
 
@@ -87,7 +87,17 @@ curl_close($ch);
 
 				<fieldset class=sub>
 					<label>Country:</label>
-					<input type="text" name="country"/>
+
+					<select name="country">
+					<?php 
+					foreach ($countryList as $country):
+						$name = $country->name;
+
+					echo "<option value='{$name}'>{$name}</option>";
+
+					endforeach;?>
+
+					</select>
 				</fieldset>
 			</fieldset>
 
