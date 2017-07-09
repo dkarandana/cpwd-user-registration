@@ -18,7 +18,7 @@ $countries = curl_exec($ch); // Getting jSON result string
 $countryList = json_decode($countries);
 
 // close cURL resource, and free up system resources
-//curl_close($ch);
+curl_close($ch);
 ?>
 
 
@@ -28,14 +28,11 @@ $countryList = json_decode($countries);
 	<title>User Registration form</title>
 	<style type="text/css">
 		form{
-			width: 400px;
+			width: 480px;
 		}
 		fieldset.sub{
 			border:none;
 		}
-	/*	input,label{
-			display: inline-block;
-		}*/
 	</style>
 </head>
 <body>
@@ -57,7 +54,7 @@ $countryList = json_decode($countries);
 			</fieldset>
 			
 			<fieldset class=sub>
-				<legend>Gender:</legend>
+				<label>Gender:</label>
 				<input id="gender_male" type="radio" name="gender" value="male"/>
 				<label for="gender_male">Male</label>
 				<input id="gender_female" type="radio" name="gender" value="female"/>
@@ -93,8 +90,9 @@ $countryList = json_decode($countries);
 					foreach ($countryList as $country):
 						$name = $country->name;
 
-					echo "<option value='{$name}'>{$name}</option>";
-
+					echo <<<EOD
+				<option value="{$name}">{$name}</option>
+EOD;
 					endforeach;?>
 
 					</select>
